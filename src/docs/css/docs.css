@@ -1,0 +1,79 @@
+
+/*---------------------- ELEMENTOS DEL DOCUMENTO EN SI (OSEA DE WORD) -------------- */
+
+#A * { margin: 0px; border: 0px; padding: 0px; box-sizing: border-box; }
+#A table { width: 100%; border-collapse: collapse; word-break: break-word; }
+#A section { margin: auto; background-color: rgb(26, 26, 26); color: black; position: relative; z-index: 0; 
+    border-left: 2px solid white; /* Borde blanco a la izquierda */
+    border-right: 2px solid white; }
+
+#A p:empty::before { content: ""; display: inline-block; }
+#A ul { list-style: none; }
+#A ul > li > p { position: relative; }
+#A ul .marker { position: absolute; }
+#A a { text-decoration: none; color:blue}
+#A .unsupported { outline: red solid 2px; }
+#A .warning { outline: yellow solid 1px; }
+#A p, #A h1, #A h2, #A h3, #A h4, #A h5, #A h6 { margin-bottom: 10px; line-height: 107.917%; }
+
+/* MODIFICAR FUENTE GENERAL PARA TODO (el font-size no)*/
+#A span, #A a ,#A summary{ font-family: Calibri; font-size: 10px; }
+
+/* ESTILO DEL H1 Q SI NECESITA QUE SE PONGAN ACA */
+#A .Ttulo1 { font-weight: bold;margin-bottom: 8px; margin-top: 32px; color: rgb(0, 250, 113); font-size: 22px; text-decoration: underline}
+#A .Ttulo1 span { font-weight: 700; font-size: 32px; }
+
+#A .Ttulo2 { margin-bottom: 5px; margin-top: 24px; }
+#A .Ttulo2 span { font-weight: 700; font-size: 21px; color:orange}
+
+#A .Ttulo3 { margin-bottom: 5px; margin-top: 18px; }
+#A .Ttulo3 span { font-weight: 700; font-size: 19px; color: rgb(69, 167, 199);}
+
+#A .Ttulo4 { margin-bottom: 2px; margin-top: 16px; }
+#A .Ttulo4 span { font-weight: 700; font-size: 16px; }
+#A .Ttulo5 { margin-bottom: 2px; margin-top: 14px; }
+#A .Ttulo5 span { font-weight: 700; }
+#A .Ttulo6 { margin-bottom: 2px; margin-top: 13px; }
+#A .Ttulo6 span { font-weight: 700; font-size: 13px; }
+
+#A .Fuentedeprrafopredeter { 
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/*#A p .Normal{
+    margin-top: 20px;
+}*/
+
+#A .Tablanormal { }
+#A .Tablanormal > tbody > tr > td { padding: 0px 7px; }
+#A .TableNormal { }
+#A .TableNormal > tbody > tr > td { padding: 0px; }
+#A .Ttulo { margin-bottom: 8px; margin-top: 32px; }
+#A .Ttulo span { font-weight: 700; font-size: 48px; }
+#A .TableNormal0 { }
+#A .TableNormal0 > tbody > tr > td { padding: 0px; }
+#A .Subttulo { margin-bottom: 5px; margin-top: 24px; }
+#A .Subttulo span { font-family: Georgia; font-style: italic; color: rgb(102, 102, 102); font-size: 32px; }
+#A .a { }
+#A .a > tbody > tr > td { padding: 0px 7px; }
+#A .a > tbody > tr > .table p { line-height: 100%; }
+#A .a0 { }
+#A .a0 > tbody > tr > td { padding: 0px 7px; }
+#A .a0 > tbody > tr > .table p { line-height: 100%; }
+#A0[x0][x1][x2][x3][x4][x5][x6][x7][x8][x9][x10][x11] > tbody > tr > td:first-child { border-left: 1pt solid rgb(255, 255, 255); border-right: 1pt solid rgb(255, 255, 255); }
+#A0[x0][x1][x2][x3][x4][x5][x6][x7][x8][x9][x10][x11] > tbody > tr > td:last-child { border-right: 1pt solid rgb(255, 255, 255); border-left: 1pt solid rgb(255, 255, 255); }
+#A0[x0][x1][x2][x3][x4][x5][x6][x7][x8][x9][x10][x11] > tbody > tr:first-of-type > td { border-top: 1pt solid rgb(255, 255, 255); border-bottom: 1pt solid rgb(255, 255, 255); }
+#A0[x0][x1][x2][x3][x4][x5][x6][x7][x8][x9][x10][x11] > tbody > tr:last-of-type > td { border-bottom: 1pt solid rgb(255, 255, 255); border-top: 1pt solid rgb(255, 255, 255); }
+#A0[x0][x1][x2][x3][x4][x5][x6][x7][x8][x9][x10][x11] > tbody > tr > td:not(:first-child):not(:last-child) { border-left: 1pt solid rgb(255, 255, 255); border-right: 1pt solid rgb(255, 255, 255); }
+#A0[x0][x1][x2][x3][x4][x5][x6][x7][x8][x9][x10][x11] > tbody > tr:not(:first-of-type):not(:last-of-type) > td { border-bottom: 1pt solid rgb(255, 255, 255); border-top: 1pt solid rgb(255, 255, 255); }
+
+
+/*------------------------- COSAS AGREGADAS NUESTRAS --------------------*/
+
+
+/*############ SECCION DESPLEGABLE #############*/
+
+.display-section:hover{
+    cursor:pointer;
+}

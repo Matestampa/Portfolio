@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Backend</title>
+    <link rel="stylesheet" type="text/css" href="./css/general.css">
+    <link rel="stylesheet" type="text/css" href="./css/sections.css">
+    <link rel="stylesheet" type="text/css" href="./css/special_words.css">
+</head>
+
+<body>
+    <header>
+        <!-- Encabezado con enlaces a las diferentes páginas -->
+        <h1>Portfolio Backend</h1>
+        <nav>
+            <ul>
+                <li><a href="base.html">INTRO</a></li>
+                <li><a href="2 apis_design.html">APIS DESIGN</a></li>
+                <li><a href="3 case_studies.html">CASE STUDIES</a></li>
+                <li><a href="4 error_handling.html">ERROR HANDLING</a></li>
+                <li><a href="clean_code.html">CLEAN CODE</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="sections-container">
+            <h1 class="page-mainTitle">Error Handling</h1>
+            <!---------------------------------------------------------------------->
+            <section id="introduction" class="normal-section">
+                <p>En esta sección se van a presentar las distintas consideraciones que tenemos para el manejo de
+                    errores (o “error handling”), en nuestros proyectos backend. Y además, la “técnica general” que
+                    utilizamos en los mismos.
+
+                </p>
+            </section>
+
+            <section id="Principales problemas" class="display-section">
+                <details>
+                    <summary class="section-title">Principales problemas que tenemos en cuenta:</summary>
+                    <p>1- Como un error puede derivar tanto en la ejecuci&oacute;n de acciones internas de la app, como
+                        en una response con
+                        error para el user.</p>
+                    <p></p>
+                    <p>2- C&oacute;mo propagar el error de los niveles m&aacute;s bajos del c&oacute;digo, hacia arriba.
+                        (En esos casos donde
+                        una funci&oacute;n llama a otra funci&oacute;n, y esa a otra, y etc)</p>
+                </details>
+            </section>
+
+            <section id="Buenas practicas" class="display-section">
+                <details>
+                    <summary class="section-title">Buenas practicas que tenemos como base</summary>
+                    
+                    <p><span style="font-weight: 400;">1- No usar excepciones para manejar la l&oacute;gica. A menos que
+                            si o si, esa
+                            l&oacute;gica dependa de alguna excepci&oacute;n. Si no es el caso, es mejor usar los
+                            &ldquo;if-else&rdquo; y
+                            buscar la manera de identificar cuando una funci&oacute;n hizo mal las cosas; ya sea
+                            chequeando que retornan,
+                            etc</span></p>
+                    
+                    <p><span style="font-weight: 400;">2- Una excepci&oacute;n o error solo deber&iacute;a ser
+                            "catcheada" en un nivel donde
+                            se sepa qu&eacute; hacer con ella. Si no, deber&iacute;a dejarse que siga hacia el nivel de
+                            arriba, hasta que
+                            alguno la pueda manejar.</span></p>
+                    <p><span style="font-weight: 400;">3- Convertir las excepciones &ldquo;directas de la falla&rdquo;,
+                            en excepciones
+                            propias que nuestro c&oacute;digo pueda entender y manejar de forma m&aacute;s f&aacute;cil.
+                            Con estas nos
+                            referimos a las que nos puede lanzar una librer&iacute;a, o propios errores b&aacute;sicos
+                            del programa o del
+                            lenguaje.</span></p>
+                    <p><span style="font-weight: 400;">4- Si trabajamos con funciones as&iacute;ncronas, y queremos
+                            intentar catchear un
+                            posible error que venga de ellas, siempre debemos esperarlas para que el flujo de
+                            c&oacute;digo no siga de largo
+                            y nos la podamos llegar a perder. En el caso de javascript usar&iacute;amos: await
+                            &ldquo;funci&oacute;nQueTiraError()&rdquo;</span></p>
+                </details>
+            </section>
+
+            <section id="Approachs para manejar..." class="display-section">
+                <details>
+                    <summary class="section-title">Approachs para manejar y propagar errores</summary>
+                    
+                    <p class="subtitle-1"><span style="font-weight: 400;">- Return error:</span></p>
+                    
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Cada funci&oacute;n que pueda
+                            llegar a dar un error, debe devolver un objeto: {data,error}. Es decir que no se lanza una
+                            excepci&oacute;n como tal</span></p>
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Es responsabilidad de quien la
+                            llama, chequear si el return, contiene error.</span></p>
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Si no se sabe que hacer con el
+                            error en el nivel, se lo pasa al de arriba de la misma manera; devolviendo un obj : {data,
+                            error} (con el mismo error que recibi&oacute;).</span></p>
+                    
+                    <p class="subtitle-1"><span style="font-weight: 400;">- Try-catch:</span></p>
+                    
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Si dentro de una funci&oacute;n se
+                            da un error, se lanza una excepci&oacute;n.</span></p>
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Es responsabilidad de quien la
+                            llama, encapsularla entre los bloques &ldquo;try-catch&rdquo;</span></p>
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Si no se sabe que hacer con el
+                            error en el nivel, no se deber&iacute;a poner el &ldquo;try-catch&rdquo;&rdquo;, y la
+                            excepci&oacute;n se propaga sola hacia los niveles de arriba, hasta que uno tenga un
+                            &ldquo;try-catch&rdquo;.</span></p>
+                    <p><span style="font-weight: 400;">&hellip;.existen otros mas tambien</span></p>
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+                    <p><span style="font-weight: 400;">En mi opini&oacute;n con el</span> <span
+                            style="font-weight: 400;">&ldquo;try-catch&rdquo;</span> <span style="font-weight: 400;">se
+                            facilita el tema de propagar el error de niveles bajos hacia los de arriba, ya que no
+                            tenemos que andar chequeando si hay error en cada nivel, y adem&aacute;s no tenemos que
+                            preocuparnos por tener si o si que devolver el objeto con 2 campos en cada funci&oacute;n.
+                            Por otro lado en tema de performance es mejor el</span> <span
+                            style="font-weight: 400;">&ldquo;return error&rdquo;,</span> <span
+                            style="font-weight: 400;">ya que las excepciones son costosas, y con este approach si bien
+                            las usar&iacute;amos como clases, no estar&iacute;amos haciendo un throw; sino que
+                            simplemente estar&iacute;amos mandando el objeto instanciado de funci&oacute;n en
+                            funci&oacute;n.</span></p>
+                    <p><span style="font-weight: 400;">Lo mejor ser&iacute;a dejar las excepciones y el</span> <span
+                            style="font-weight: 400;">&ldquo;try-catch&rdquo;</span> <span
+                            style="font-weight: 400;">para esos errors internos que los necesitan, y est&aacute;n a bajo
+                            nivel. Y cuando ya estemos m&aacute;s o menos a un alto nivel, donde se puedan dar errores
+                            l&oacute;gicos bastante recurrentes; a partir de ah&iacute; usar el</span> <span
+                            style="font-weight: 400;">&ldquo;return error&rdquo;.</span></p>
+                </details>
+            </section>
+
+
+
+            <section id="references" class="references-section">
+                <!-- Referencias relacionadas a las secciones -->
+                <h2 class="section-title">Docs</h2>
+                <div class="refs-container">
+                    
+                    <div class="refs-item">
+                        <!--<img class="ref-img" src="../public/img/Todo logo.png" alt="Proyecto 1">-->
+                        
+                        <h3 class="ref-title">Tecnica general dentro del server</h3>
+                        
+                        <a class="ref-link" href="../docs/4-ErrHandling/TecnicaServer.html">
+                            <img src="../public/img/general/doc logo.png" alt="Logo del enlace">
+                            Documento
+
+                            
+                        </a>
+                        <a class="ref-link" href="https://github.com/Matestampa/Error-Handling-technique-example">
+                            <img src="../public/img/general/gh logo.png" alt="Logo del enlace">
+                            Codigo de ejemplo   
+                        </a>
+                       
+                    </div>
+                </div>
+            </section>
+            <!---------------------------------------------------------------------->
+        </div>
+    </main>
+
+    <!---------------------------------------------------------------------->
+    <footer>
+        <!-- Contenido del pie de página -->
+        &copy; 2023 Tu Nombre - Portfolio Backend
+    </footer>
+
+</body>
+
+</html>

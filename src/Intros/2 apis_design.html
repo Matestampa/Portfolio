@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Backend</title>
+    <link rel="stylesheet" type="text/css" href="./css/general.css">
+    <link rel="stylesheet" type="text/css" href="./css/sections.css">
+    <link rel="stylesheet" type="text/css" href="./css/special_words.css">
+</head>
+
+<body>
+    <header>
+        <!-- Encabezado con enlaces a las diferentes páginas -->
+        <h1>Portfolio Backend</h1>
+        <nav>
+            <ul>
+                <li><a href="base.html">INTRO</a></li>
+                <li><a href="2 apis_design.html">APIS DESIGN</a></li>
+                <li><a href="3 case_studies.html">CASE STUDIES</a></li>
+                <li><a href="4 error_handling.html">ERROR HANDLING</a></li>
+                <li><a href="clean_code.html">CLEAN CODE</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="sections-container">
+            <h1 class="page-mainTitle">Apps & Apis design</h1>
+            <!---------------------------------------------------------------------->
+            <section id="introduction" class="normal-section">
+                <p><span style="font-weight: 400;">En esta secci&oacute;n se van a presentar distintas ideas de apps,
+                        con sus requerimientos funcionales necesarios. Cada una va a contar con un documento, en el cual
+                        va a explicarse c&oacute;mo se implementarian esas funcionalidades, del lado del backend. Para
+                        esto se realizaran ciertas acciones como:</span></p>
+                <ul>
+                    <li style="font-weight: 400;"><span style="font-weight: 400;">Dise&ntilde;ar&nbsp; DB y explicar las
+                            razones del dise&ntilde;o.</span></li>
+                    <li style="font-weight: 400;"><span style="font-weight: 400;">Dise&ntilde;ar los endpoints de la
+                            &ldquo;API&rdquo;</span></li>
+                    <li style="font-weight: 400;"><span style="font-weight: 400;">Explicar de forma
+                            &ldquo;general&rdquo; c&oacute;mo se llevar&iacute;a a cabo, cada uno de los requerimientos
+                            funcionales.</span></li>
+                    <li style="font-weight: 400;"><span style="font-weight: 400;">Explicar ciertas implementaciones
+                            &ldquo;especiales&rdquo; u optimizaciones.</span></li>
+                </ul>
+
+                <p class="subtitle-1"><span style="font-weight: 400;">Aclaraci&oacute;n:</span><span
+                        style="font-weight: 400;">&nbsp;</span></p>
+
+                <p><span style="font-weight: 400;">Lo que se presente en los documentos no representar&iacute;a una app
+                        en su totalidad, sino que es simplemente una parte/componente. Pero se va a hacer de cierta
+                        manera, que pudiera acoplarse al resto de la app lo m&aacute;s f&aacute;cil posible, o incluso
+                        extender sus funcionalidades.&nbsp;</span></p>
+                <p><span style="font-weight: 400;">Por otro lado, no vamos a explicar constantemente cosas generales
+                        como la autenticaci&oacute;n del usuario. O si implementamos &ldquo;transacciones de DB&rdquo;
+                        no se van a explicar como funcionan a fondo repetitivamente.</span></p>
+            </section>
+
+            <section id="2 tipos de docs" class="display-section">
+                <details>
+                    <summary class="section-title">Tenemos 2 tipos de documentos</summary>
+
+                    <p class="subtitle-1"><span style="font-weight: 400;">-API REST:</span></p>
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Tienen
+                            sus endpoints de api y a partir de eso se explican las funcionalidades.&nbsp;</span></p>
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Cuentan
+                            con un c&oacute;digo que implementa todo lo explicado.</span></p>
+                    <p class="subtitle-1"><span style="font-weight: 400;">-APP:</span></p>
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Son
+                            simplemente de an&aacute;lisis, y explican las funcionalidades directamente.&nbsp;</span>
+                    </p>
+                    <p><span style="font-weight: 400;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-No
+                            cuentan con un c&oacute;digo, pero tienen lo necesario para construirlo sin
+                            problemas.</span></p>
+                    <p>Ambos mantienen una estructura muy parecida, simplemente diferenci&aacute;ndose en la presencia
+                        de &ldquo;endpoints&rdquo; o no, y en c&oacute;mo se explican las funcionalidades.</p>
+                </details>
+            </section>
+
+            <section id="references" class="references-section">
+                <h2 class="section-title">Docs</h2>
+
+                <div class="refs-container">
+                    <!-- Cuadrado 1 -->
+                    <div class="refs-item">
+                        <!-- Contenido del cuadrado 1 (puedes añadir imagen, texto, etc.) -->
+                        <img class="ref-img" src="../public/img/Todo logo.png" alt="Proyecto 1">
+
+                        <h3 class="ref-title">Todo "API REST"</h3>
+
+                        <a class="ref-link" href="../docs/2-ApisDesign/Todo.html">
+                            <img src="../public/img/general/doc logo.png" alt="Logo del enlace">
+                            Documento
+                        </a>
+                        <a class="ref-link" href="https://github.com/Matestampa/Todo-API-REST">
+                            <img src="../public/img/general/gh logo.png" alt="Logo del enlace">
+                            Codigo
+                        </a>
+
+                        <p class="ref-descr">Aplicacion de tareas estilo "todo" que cuenta
+                            con diferentes opciones para organizarlas.
+                        </p>
+
+
+                    </div>
+
+                    <div class="refs-item">
+
+                        <img class="ref-img" src="../public/img/Turnos logo.png" alt="Proyecto 1">
+
+                        <h3 class="ref-title">Take turnos "API REST"</h3>
+
+                        <a class="ref-link" href="../docs/2-ApisDesign/Turnos.html">
+                            <img src="../public/img/general/doc logo.png" alt="Logo del enlace">
+                            Documento
+                        </a>
+                        <a class="ref-link" href="https://github.com/Matestampa/Turnos-API-REST">
+                            <img src="../public/img/general/gh logo.png" alt="Logo del enlace">
+                            Codigo
+                        </a>
+
+                        <p class="ref-descr">
+                            Aplicacion para tomar turnos en algun lugar, donde se quiere asegurar
+                            que haya solo cierta cantidad de gente en un dia y horario determinado.
+                        </p>
+                    </div>
+
+                    <div class="refs-item">
+
+                        <h3 class="ref-title">Lawyers appointments "APP"</h3>
+
+                        <a class="ref-link" href="../docs/2-ApisDesign/LawyersAppointments.html">
+                            <img src="../public/img/general/doc logo.png" alt="Logo del enlace">
+                            Documento
+                        </a>
+
+                        <p class="ref-descr">
+                            App para reservar turnos con abogados. Quienes pueden elegir sus propios dias
+                            y horarios disponibles; y variarlos segun les convenga. 
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+
+    <!---------------------------------------------------------------------->
+    <footer>
+        <!-- Contenido del pie de página -->
+        &copy; 2023 Tu Nombre - Portfolio Backend
+    </footer>
+
+</body>
+
+</html>

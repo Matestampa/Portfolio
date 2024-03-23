@@ -1,0 +1,99 @@
+/* ------ CSS PARA SECCIONES DENTRO DE CADA TEMA (LA INTRO, LO Q CONTIENE LAS REFS,ETC) ------------*/
+
+
+section {
+    display: block; /* Hace que las secciones ocupen solo el espacio que necesitan */
+    text-align: left; /* Alineación del texto al izquierda */
+    max-width: 800px; /* Define el ancho máximo para las secciones */
+    margin: 0 auto; /* Centra las secciones horizontalmente */
+    padding: 10px; /* Agrega espacio alrededor del contenido de las secciones */
+    background-color: black; /* Cambia el color de fondo de las secciones */
+    color: rgba(233, 232, 230, 0.867);
+    font-size: 22px;
+    border-radius: 5px; /* Añade bordes redondeados */
+    margin-bottom: 10px; /* Espacio entre las secciones */
+}
+
+/* Titulo principal de cada seccion */
+.section-title{
+    color:#07e99a;
+    font-size: 30px;
+}
+
+
+/*-------------------------- DISTINTOS TIPOS DE SECCIONES -----------------------------*/
+
+/*############ SECCION NORMAL ##############*/
+
+
+
+/*############ SECCION DESPLEGABLE #############*/
+.display-section .section-title{
+    text-decoration: underline;
+}
+
+.display-section .section-title:hover{
+    cursor:pointer;
+}
+
+
+/*########### SECCION PARA REFERENCIAS A DOCS ##########*/
+
+.refs-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.refs-item {
+    border: 10px solid #444;
+    background-color: black;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    display: flex; /* Utiliza flexbox para centrar la imagen */
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    align-items: flex-start; /* Mantiene el alineamiento a la izquierda */
+
+    min-width: 200px; /* Ancho mínimo para el grid-item, ajusta según sea necesario */
+}
+
+.refs-item:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el mouse */
+    box-shadow: 0 0 20px #4afbbd; /* Agrega una sombra para dar profundidad */
+}
+
+.refs-item .ref-img {
+    max-width: 100%; /* Ajusta la imagen para que no sobrepase el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-bottom: 5px; /* Espacio entre la imagen y el título */
+    align-self: center; /* Centra solo la imagen dentro del grid-item */
+}
+.refs-item .ref-title {
+    margin-bottom: 0px; /* Espacio entre el título y el enlace */
+    font-size: 20px;
+}
+
+.refs-item .ref-descr{
+   font-size: 16px;
+}
+
+.refs-item .ref-link {
+    color: #07e99a;
+    font-size: 18px;
+    margin: 5px;
+    display: flex; /* Utiliza flexbox para alinear el logo y el texto del enlace */
+    align-items: center; /* Alinea verticalmente */
+    text-decoration: none;
+}
+
+.refs-item .ref-link:hover{
+    text-decoration: underline;
+}
+
+.refs-item .ref-link img {
+    max-width: 22px; /* Ajusta el tamaño del logo según tus necesidades */
+    margin-right: 5px; /* Espacio entre el logo y el texto del enlace */
+    background-color: #07e99a;
+    border-radius: 15px;
+}

@@ -1,0 +1,120 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: black;
+}
+
+/*------- TITULO DE LA SECCION A LA Q PERTENECE EL DOC ------------*/
+#main-title{
+    color:#07e99a;
+    text-align: center;
+    text-decoration: underline;
+}
+
+/*------- CONTAINER DE ENLACE DE SECCION/GRUPO AL Q PERTENECE EL DOC -----*/ 
+#grupo-documento{
+    text-align: center;
+    color:white;
+    font-size: 18px;
+}
+
+/*---- ENLACE DEL GRUPO ------*/
+#grupo-enlace{
+    color:rgb(63, 182, 221);
+}
+
+
+/*--- CONTAINER DEL DOC, Y TODO LO Q LO ACOMPAÑA (INDICE, OTRO ESPACIO, ETC) ---*/
+#show-doc-container{
+    display: flex;
+    justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+    margin: 20px;
+    background-color: black;
+
+}
+
+/*--------- CONTAINER DEL INDICE -----------*/
+#indice {
+    width: 20%; /* Ancho fijo del div del índice */
+    padding-top: 150px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 110px; /* Alinear el div del índice en la parte superior */
+    bottom: 0;
+    overflow-y: auto;
+}
+
+/*-------- CONTAINER DEL CONTAINER DEL DOCUMENTO ---------*/
+#contenedor-documento {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+}
+
+
+/*------- CONETAINER DEL DOCUMENTO DIRECTO ------*/
+#documento {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: 100%;
+    flex-direction: column;
+
+}
+
+/*------- ESPACIO A LA DERECHA, PARA Q EL DOC QUEDE EN EL MEDIO -----*/
+#espacio-derecha {
+    width: 20%; /* Ancho fijo del espacio a la derecha */
+}
+
+
+
+
+/* ####################### STYLES DEL INDICE ######################################*/
+
+/*-------ul de todo ---------*/
+.indice {
+    list-style-type:circle;
+    margin-left: 20;
+    padding-left: 0;
+    color:white;
+}
+
+
+.indice li{ /*------- li de h1 -----*/
+    margin-bottom: 10px; /*Separarlos entre si*/
+
+}
+
+/*------ links de texto directo ----*/
+.indice a{
+    color: white;
+    text-decoration: none;
+}
+
+.indice a:hover{
+    text-decoration: underline;
+}
+
+
+/*------- ul de h2 -------*/
+.nivel-h2 {
+    margin-left: 20px;
+}
+
+.nivel-h2 li{
+    margin-bottom: 10px;
+}
+
+
+/*---------- Decoracion de texto (tamaño,estilo) ------*/
+.h1-ref{
+   /*color:lightgreen;*/
+   font-size: 18px;
+}
+
+.h2-ref{
+    /*color: orange;*/
+    font-size: 16px;
+}

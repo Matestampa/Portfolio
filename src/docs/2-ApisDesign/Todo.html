@@ -1,0 +1,741 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/docPage.css">
+    <link rel="stylesheet" href="../css/docs.css">
+    <title>Todo API REST</title>
+</head>
+
+<body>
+    <div id="main-title">
+        <h1>MateStampa Docs</h1>
+    </div>
+
+
+    <div id="grupo-documento">
+        <!-- Enlace al grupo -->
+        <a id="grupo-enlace" href="../../Intros/2 apis_design.html">Apis Design</a>
+        <!-- Separador ">" -->
+        <span> &gt; </span>
+        <!-- Enlace al documento -->
+        <a>Todo API REST</a>
+    </div>
+
+    
+
+    <div id="show-doc-container">
+        <div id="indice">
+            <ul class="indice">
+                <li><a class="h1-ref" href="#INTRO:">INTRO:</a></li>
+                <li><a class="h1-ref" href="#REQUERIMIENTOS FUNCIONALES:">REQUERIMIENTOS FUNCIONALES:</a></li>
+                <li><a class="h1-ref" href="#DB DESIGN:">DB DESIGN:</a></li>
+                <ul class="nivel-h2">
+                    <li><a class="h2-ref" href="#Explicacion de tablas:">Explicacion de tablas:</a></li>
+                    <li><a class="h2-ref" href="#Indexes:">Indexes:</a></li>
+                </ul>
+                <li><a class="h1-ref" href="#ENDPOINTS:">ENDPOINTS:</a></li>
+                <li><a class="h1-ref" href="#EXPLICACIÓN DE ENDPOINTS IMPORTANTES:">EXPLICACIÓN DE ENDPOINTS
+                        IMPORTANTES:</a></li>
+                <li><a class="h1-ref" href="#EXPLICACIÓN DE CIERTAS IMPLEMENTACIONES:">EXPLICACIÓN DE CIERTAS
+                        IMPLEMENTACIONES:</a></li>
+                <ul class="nivel-h2">
+                    <li><a class="h2-ref" href="#1-Sistema de posiciones de tasks:">1-Sistema de posiciones de
+                            tasks:</a></li>
+                </ul>
+            </ul>
+        </div>
+
+        <div id="contenedor-documento">
+            <div id="documento">
+                <div id="A"
+                    style="background-color: transparent; min-height: 1000px; width: 100%; padding-top: 20px; overflow: auto;">
+                    <style></style>
+                    <section style="width: 793px; min-height: 1122px; padding: 94px 113px; column-gap: 48px;">
+                        <p class=" Normal" style="text-align: center;"><span class=" Fuentedeprrafopredeter"
+                                style="color: rgb(255, 255, 0); font-size: 26px;">“Todo” API REST</span></p>
+                        <details class="display-section" id="INTRO:">
+                            <summary class="Ttulo1">INTRO:</summary>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="font-family: Arial; color: rgb(230, 237, 243);">Api rest para una app de
+                                    tareas estilo "Todo", que cuenta con varias opciones para organizarlas . Como por
+                                    ejemplo, agruparlas mediante listas o reordenarlas según la conveniencia.</span></p>
+                            <p class=" Normal"></p>
+                        </details>
+                        <details class="display-section" id="REQUERIMIENTOS FUNCIONALES:">
+                            <summary class="Ttulo1">REQUERIMIENTOS FUNCIONALES:</summary>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">1-Crear, modificar y eliminar listas.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">2-Crear,</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> modificar y
+                                    eliminar tasks dentro de una lista</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">3-Chequear y Deschequear tasks.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">4-Cambiar la posición en que aparecen las
+                                    “unchecked tasks”,según al user le convenga.</span></p>
+                            <p class=" Normal"></p><i id="_heading=h.ner68e14xggr"></i>
+                        </details>
+                        <details class="display-section" id="DB DESIGN:">
+                            <summary class="Ttulo1">DB DESIGN:</summary>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">IFRAME</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(17, 255, 125); font-size: 21px;"><iframe
+                                        src="https://drawsql.app/teams/los-colos/diagrams/todo-api-rest/embed"
+                                        width="100%" height="300px"></iframe></span></p>
+                            <p class=" Normal"></p>
+                            <p class=" Normal"></p>
+                            <p class=" Normal"></p>
+                            <h2 class=" Normal Ttulo2" id="Explicacion de tablas:"><span class=" Fuentedeprrafopredeter"
+                                    style="font-weight: 700; color: rgb(255, 192, 0); font-size: 21px; text-decoration: underline;">Explicacion
+                                    de tablas:</span></h2>
+                            <h3 class=" Normal Ttulo3" id="_heading=h.7t21uw3c17x"><span class=" Fuentedeprrafopredeter"
+                                    style="font-weight: 700; color: rgb(0, 176, 240);">users() y user_access():</span>
+                            </h3>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); font-size: 16px;">Datos del user y autenticacion,
+                                    login,etc</span></p>
+                            <h3 class=" Normal Ttulo3" id="_heading=h.ygdqk3kmqqb4"><span
+                                    class=" Fuentedeprrafopredeter"
+                                    style="font-weight: 700; color: rgb(0, 176, 240);">lists():</span></h3>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Contiene las listas de los users, y su
+                                    info.</span></p>
+                            <h3 class=" Normal Ttulo3" id="_heading=h.werbpq5cg0am"><span
+                                    class=" Fuentedeprrafopredeter"
+                                    style="font-weight: 700; color: rgb(0, 176, 240);">tasks()</span></h3>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Contiene las tareas pertenecientes a cada
+                                    lista.</span></p>
+                            <h2 class=" Normal Ttulo2" id="Indexes:"><span class=" Fuentedeprrafopredeter"
+                                    style="font-weight: 700; color: rgb(255, 192, 0); font-size: 21px; text-decoration: underline;">Indexes:</span>
+                            </h2>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">-</span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(0, 176, 240); text-decoration: underline;">tasks
+                                    (list_id):</span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);"> ya que es por lo que siempre se buscan las tasks
+                                    (y se hace seguido), y así es más rápido.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">-No hay un index en user_id de “list</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">s”, ya que traer
+                                    las listas de un user es una request que se hace menos seguido. Solo se hace una vez
+                                    prácticamente.</span></p>
+                            <p class=" Normal"></p>
+                        </details>
+                        <details class="display-section" id="ENDPOINTS:">
+                            <summary class="Ttulo1">ENDPOINTS:</summary>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Los marcados con un </span><span
+                                    class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); background-color: red;">número,</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> son de una
+                                    complejidad más alta que el resto y requieren una explicación extra.</span></p>
+                            <table class=" TableNormal0 a0" id="A0" x0="1" x1="1" x2="1" x3="1" x4="1" x5="1" x6="1"
+                                x7="1" x8="1" x9="1" x10="1" x11="1" style="width: 566px;">
+                                <colgroup>
+                                    <col style="width:32.21238938053097%">
+                                    <col style="width:25.13274336283186%">
+                                    <col style="width:22.654867256637168%">
+                                    <col style="width:20%">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Endpoint</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Args</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Return</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Descr</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">GET “user/login”</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">POST “user/login”</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">username: text,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">password: text</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Setea Cookies:</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">sessionId,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">user_id</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Proceso de login</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">GET “user/logout”</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Cierra la session</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: rgb(255, 255, 255);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td style="background-color: rgb(255, 255, 255);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td style="background-color: rgb(255, 255, 255);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td style="background-color: rgb(255, 255, 255);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">GET
+                                                    “lists/mylists/:user_id”</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Array:{</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">id: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">title: text,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">color: text}</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Trae las listas de un user</span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">POST “lists/”</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">title: text,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">color: text </span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">id: int</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Crea nueva lista</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">PUT “lists/”</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">title: text,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">color: text</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Modifica data de la lista</span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">DELETE “lists/:list_id”</span>
+                                            </p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Borra lista</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: rgb(255, 255, 255);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td style="background-color: rgb(255, 255, 255);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td style="background-color: rgb(255, 255, 255);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td style="background-color: rgb(255, 255, 255);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">GET “tasks/:id”</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Info extra de la task</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Trae info interna de la
+                                                    task</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">GET “tasks/:list_id”</span></p>
+                                            <p class=" Normal"></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255); background-color: red;">1.A)</span>
+                                            </p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Array:{</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">id: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">body: text,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">pos: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">created: date}</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Trae las tasks (unchecked) de una
+                                                    lista.</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">GET
+                                                    “tasks/checked/:list_id”</span></p>
+                                            <p class=" Normal"></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255); background-color: red;">1.B)</span>
+                                            </p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">array:{</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">id: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">body: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">completed: date}</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Trae las checked tasks de la
+                                                    list</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">POST “tasks/”</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255); background-color: red;">2)</span>
+                                            </p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">body: text,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">list_id: int</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">last_pos: int</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">id: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">pos: int</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Crea nueva task</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">PUT “tasks/”</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">id: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">body: text</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Modifica data de la task(solo el
+                                                    body)</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">PUT “tasks/check”</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255); background-color: red;">3.A)</span>
+                                            </p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">id: int</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Hace check de task</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">PUT “tasks/uncheck”</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255); background-color: red;">3.B)</span>
+                                            </p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">id: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">last_pos: int</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">new_pos: int</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Hace uncheck de task</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">PUT “tasks/change_order”</span>
+                                            </p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255); background-color: red;">4)</span>
+                                            </p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">id: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">up_pos: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">down_pos: int/”end”,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">list_id: int</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">new_pos: int,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">re_order : bool,</span></p>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">cant: int/undef</span></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Cambia orden de una task (solo en
+                                                    las unchecked)</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">DELETE “tasks/:id”</span></p>
+                                        </td>
+                                        <td style="background-color: rgb(0, 0, 0);">
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"></p>
+                                        </td>
+                                        <td>
+                                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                                    style="color: rgb(255, 255, 255);">Borra una task</span></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class=" Normal"></p>
+                        </details>
+                        <details class="display-section" id="EXPLICACIÓN DE ENDPOINTS IMPORTANTES:">
+                            <summary class="Ttulo1">EXPLICACIÓN DE ENDPOINTS IMPORTANTES:</summary>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); background-color: red;">1------------)</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Las tasks de una lista se traen por separado. Por
+                                    un lado las “unchecked” con </span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); background-color: red;">“1.A”</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> (qué se traen
+                                    siempre cuando se entra a una list), y se ordenan por posición. Y luego el user
+                                    puede elegir si también trae las checked con </span><span
+                                    class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); background-color: red;">“1.B”</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> que se ordenan
+                                    por la fecha</span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);"> de completado.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(0, 176, 240);">Hint Frontend: </span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">En un principio
+                                    solo mostrar las unchecked, y luego que haya un botón para traer las checked.</span>
+                            </p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); background-color: red;">2-------------)</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Al agregar una task, esta se inserta debajo de
+                                    todo respetando el sistema de posiciones. Para que se genere bien la</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> posición de esta
+                                    nueva task, el sistema necesita la posición de la última task.(esta sería
+                                    “last_pos”). Una vez generada devuelve la posición.(esta sería en la response
+                                    “pos”).</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(0, 176, 240);">Hint Frontend:</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> </span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); text-decoration: underline;">Request:</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> Mandar la
+                                    “last_pos”(si no hay nada 0). </span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); text-decoration: underline;">Response:</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> Ag</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">regar la posición
+                                    que devuelve el server a la nueva task.</span></p>
+                            <p class=" Normal"></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); background-color: red;">3--------------)</span>
+                            </p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Quita una task de checked y la mete en unchecked.
+                                    El proceso de inserción es el mismo que en </span><span
+                                    class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); background-color: red;">“2”,</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> y por eso
+                                    también debemos pasar la posición de la última “unchecked task”(last_pos</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">). A su vez
+                                    también nos devuelve la nueva posición de la task.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(0, 176, 240);">Hint Frontend: </span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); text-decoration: underline;">Request: </span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">Mandar la
+                                    “last_pos”(si no hay nada 0). </span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); text-decoration: underline;">Response:</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> Agregar la
+                                    posición que devuelve el server a la task insertada.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); background-color: red;">4-----------)</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">El user puede cambiar la posición de sus
+                                    “unchecked tasks” según quiera. Puede meter la última entre la 1era y 2da, o la 1era
+                                    mandarla a lo último, etc. Es decir no son swaps en</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">tre solo 2, sino
+                                    que hay inserciones entre medio. (si hubiera sido swaps sería más
+                                    fácil).</span><span class=" Fuentedeprrafopredeter"> </span><span
+                                    class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(17, 255, 125); font-size: 17px; background-color: darkblue;">VER
+                                    IMPLEMENTACIONES (1).</span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(17, 255, 125);"> </span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Para que el sistema de orden funcione, el
+                                    endpoint debe pasar si o si esos params.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(0, 176, 240);">Hint Frontend:</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> </span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">
+                                </span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); text-decoration: underline;">REQUEST:</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">
+                                    -Si se manda una task abajo de todo(ósea entre la última task y nada), debe
+                                    mandarse: “end” como el arg: “down_pos”</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">
+                                    -Si se manda una task arriba de todo debe mandarse: 0 como el arg: “up_pos”</span>
+                            </p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">
+                                </span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); text-decoration: underline;"> RESPONS</span><span
+                                    class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); text-decoration: underline;">E: </span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> </span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">
+                                    -Sabemos que la response siempre devuelve {new_pos:int, re_order:bool, cant:int(la
+                                    ORDER_SCALE)}:</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">
+                                    Entonces debe encargarse de asignarle la “new_pos” a la task movida.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">
+                                    Y solo en caso de </span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">que haya habido conflicto (ósea re_order=true)
+                                    debe actualizar la posición de los elementos ui, de las tasks que haya debajo de
+                                    hacia dónde se movió. Sumándole a la posición de cada uno, el campo de la response:
+                                    “cant”.</span></p>
+                            <p class=" Normal"></p>
+                        </details>
+                        <details class="display-section" id="EXPLICACIÓN DE CIERTAS IMPLEMENTACIONES:">
+                            <summary class="Ttulo1">EXPLICACIÓN DE CIERTAS IMPLEMENTACIONES:</summary>
+                            <h2 class=" Normal Ttulo2" id="1-Sistema de posiciones de tasks:"><span
+                                    class=" Fuentedeprrafopredeter"
+                                    style="font-weight: 700; color: rgb(255, 192, 0); font-size: 21px; text-decoration: underline;">1-Sistema
+                                    de posiciones de tasks:</span></h2>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">-Todas las posiciones inicialmente se hacen de
+                                    cada cierta escala. Ej: con una escala de 1000: la primera task tendría pos 1000, la
+                                    segunda 2000, etc. Básicamente al agregar una task, se toma </span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">la posición de la
+                                    última</span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">, y se aumenta según la escala. Este “bache” de
+                                    posiciones que estamos generando nos permite lo siguiente:</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">-Cuando movemos una task de lugar, y la
+                                    insertamos entre medio de otras 2(o tmb una task y el principio,o una task y el
+                                    final); la nueva posición de </span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">la task es el punto medio entre esos 2 extremos.
+                                    (osea “up_pos”, y “down_pos”). Ej: la 6° tiene posición 6000 y la metemos entre la
+                                    1° y la 2°, nos quedaría con posición 500.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Esto evita que tengamos que actualizar la
+                                    posición de todas las tasks cada vez qu</span><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">e cambiamos de lugar una.</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Solamente va a pasar cuando entre 2 posiciones de
+                                    tasks ya no haya espacio y queramos meter una ahí. En este caso lo que se hace es lo
+                                    siguiente:</span></p>
+                            <p class=" Normal"></p>
+                            <p class=" Normal" style="margin-left: 48px;"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); text-decoration: underline;">-Acciones en el
+                                    server:</span></p>
+                            <p class=" Normal" style="margin-left: 48px;"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);"> -Se aumenta “down_pos” en 1000</span></p>
+                            <p class=" Normal" style="margin-left: 48px;"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);"> -Se calcula </span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">el punto medio
+                                    entre “up_pos” y la nueva “down_pos”. (esto va a ser la “new_pos” de la task que se
+                                    movió)</span></p>
+                            <p class=" Normal" style="margin-left: 48px;"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255); text-decoration: underline;">-Acciones en ela
+                                    BBDD:</span></p>
+                            <p class=" Normal" style="margin-left: 48px;"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);"> -Se aumenta en 1000(o según la escala) a todas
+                                    las tasks con pos mayor a “up_pos”</span></p>
+                            <p class=" Normal" style="margin-left: 48px;"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);"> -Se asigna la</span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);"> “new_pos” a la
+                                    task que se movió.</span></p>
+                            <p class=" Normal"></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Igualmente es poco frecuente que pase esto , ya
+                                    que debería meterse una task varias veces en el mismo lugar; y si llega a pasar está
+                                    la bbdd bien configurada para que sea rápido (específicamente el index de “list_id”
+                                    en la tabla “tasks”).</span></p>
+                            <p class=" Normal"><span class=" Fuentedeprrafopredeter"
+                                    style="color: rgb(255, 255, 255);">Esta técnica fue </span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">tomada
+                                    de</span><span class=" Fuentedeprrafopredeter">:</span><a
+                                    href="https://stackoverflow.com/a/39871377"><span class=" Fuentedeprrafopredeter"
+                                        style="color: rgb(17, 85, 204); text-decoration: underline;">https://stackoverflow.com/a/39871377</span></a><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(0, 176, 240);"> </span><span
+                                    class=" Fuentedeprrafopredeter" style="color: rgb(255, 255, 255);">y adaptada para
+                                    su uso en el proyecto.</span></p>
+                            <p class=" Normal"></p>
+                            <p class=" Normal"></p>
+                        </details>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <div id="espacio-derecha"></div>
+
+    </div>
+
+
+
+</body>
+
+</html>
