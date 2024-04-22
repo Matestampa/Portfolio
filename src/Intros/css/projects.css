@@ -1,0 +1,120 @@
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.project {
+    background-color: black;
+    border-radius: 10px;
+    padding: 20px;
+    width: 800px;
+    margin: 30px auto;
+    border: 8px solid #444; /* Borde gris */
+    transition: box-shadow 0.3s ease; /* Transición suave para la sombra */
+    display: grid;
+    
+    /*------ Definiendo areas del grid ----*/
+    grid-template-areas: 
+    "imagen titulo-descr"
+    "imagen titulo-descr";
+    /*-------------------------------------*/
+    
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto auto;
+    column-gap: 25px; /*Distancia entre columnas*/
+}
+
+.project:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 20px #4afbbd; /* Sombra blanca al pasar el cursor */
+}
+
+
+/*########################## ACOMODAMIENTO DE GRID DE LAS AREAS ######################*/
+
+/*---- area de imagen y links -----*/
+.imagen {
+    grid-area: imagen;
+    position: relative; /* Posición relativa para ubicar elementos dentro */
+}
+
+/*---- area de titulo y descr ----*/
+.titulo-descr {
+    grid-area: titulo-descr;
+}
+
+/*---------------------------------------------------*/
+
+
+
+/*###################### STYLING ELEMENTS DE AREA IMAGEN ########################*/
+.imagen .project-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/*---- Div de logos/links debajo de la imagen ----*/
+.links {
+    position: relative; /* Posición absoluta para ubicar los logos */
+    bottom: 10px; /* Alineación en la parte inferior */
+    left: 0; /* Alineación en la parte izquierda */
+    width: 100%; /* Ocupar el mismo ancho que la imagen */
+    height: 10px;
+    /*padding: 10px;*/
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo transparente para los logos */
+    display: flex; /* Mostrar los logos en línea */
+    justify-content: space-between; /* Distribuir los logos de manera uniforme */
+    align-items: center; /* Centrar los logos verticalmente */
+    border-radius: 0px;
+}
+
+/*---- Distribuir logos en linea -------*/
+.links .link {
+    flex:1;
+    margin: 0 0px;
+    padding: 0 0px;
+    border-right: 4px solid black; /*Para que se vea el borde de separacion */
+    text-align: center;
+}
+
+.links > .link:last-child {
+    border-right: none; /* Elimina el borde derecho del último div */
+}
+
+/*------ logos/Links debajo de la imagen ------*/
+
+/*------ cuadrado ------*/
+.link {
+    /*width: 30px; /* Ancho del logo */
+    height: 30px; /* Alto del logo */
+    background-color: #07e99a;
+}
+
+.link:hover{
+    transform: scale(1.05);
+}
+
+
+/*------ imagen png -------*/
+.link-logo{
+   max-width: 24px;
+   vertical-align: middle;
+}
+
+/*################ STYLING ELEMENTS AREA titulo-descr #############################*/
+
+/*----- titulo -----*/
+.titulo-descr h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 30px;
+    text-decoration:underline;
+}
+
+/*----- Descripcion del project -----*/
+.titulo-descr p {
+    font-size: 16px;
+    margin-bottom: 0;
+}
