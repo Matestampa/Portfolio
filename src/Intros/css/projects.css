@@ -8,6 +8,7 @@
     background-color: black;
     border-radius: 10px;
     padding: 20px;
+    padding-bottom: 5px;
     width: 800px;
     margin: 30px auto;
     border: 8px solid #444; /* Borde gris */
@@ -17,12 +18,14 @@
     /*------ Definiendo areas del grid ----*/
     grid-template-areas: 
     "imagen titulo-descr"
-    "imagen titulo-descr";
+    "tech-stack destacados";
+    /*"imagen titulo-descr";*/
     /*-------------------------------------*/
     
     grid-template-columns: 250px auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     column-gap: 25px; /*Distancia entre columnas*/
+    row-gap: 20px; /*Distancia entre filas (tmb agrega espacio abajo de todo)*/
 }
 
 .project:hover {
@@ -42,6 +45,14 @@
 /*---- area de titulo y descr ----*/
 .titulo-descr {
     grid-area: titulo-descr;
+}
+
+.tech-stack {
+    grid-area: tech-stack;
+}
+
+.destacados {
+    grid-area: destacados;
 }
 
 /*---------------------------------------------------*/
@@ -70,7 +81,7 @@
     border-radius: 0px;
 }
 
-/*---- Distribuir logos en linea -------*/
+/*---- Distribuir logos en linea horizontal -------*/
 .links .link {
     flex:1;
     margin: 0 0px;
@@ -117,4 +128,45 @@
 .titulo-descr p {
     font-size: 16px;
     margin-bottom: 0;
+}
+
+
+/*######################### STYLING ELEMENTS AREA tech-stack ######################*/
+
+.project .tech-stack h4{
+    text-decoration: underline;
+    margin-top: 0px;
+}
+
+.project .tech-stack ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea */
+    font-size: 16px;
+    margin-top: 10px;
+    font-style: oblique;
+}
+
+.project .tech-stack li {
+    color: white;
+    margin-right: 10px; /* Espacio entre elementos */
+    margin-bottom: 10px;
+    max-width: 200px; /* Ancho máximo de cada elemento */
+    white-space: nowrap; /* Evita que los elementos se dividan en varias líneas */
+    overflow: hidden; /* Oculta el contenido que sobresale */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos (...) si el contenido es demasiado largo */
+}
+
+.tech-stack img {
+    width: 20px; /* Ancho deseado */
+    height: auto; /* Altura automática para mantener la proporción */
+}
+
+/*######################### STYLING ELEMENTS AREA destacados ######################*/
+.destacados h4{
+    margin-top: 0px;
+    font-size: 20px;
+    text-decoration: underline
+    ;
 }
