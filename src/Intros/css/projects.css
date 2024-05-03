@@ -175,6 +175,10 @@
     overflow-y: auto; /* Esto añade una barra de desplazamiento vertical si es necesario */
 }
 
+.destacados .scrollable-list:hover{
+    cursor: all-scroll;
+}
+
 .destacados .scrollable-list::-webkit-scrollbar{
     width: 12px;
     background-color: #444;
