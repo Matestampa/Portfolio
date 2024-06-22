@@ -65,9 +65,14 @@ nav ul li {
     color: #fff;
     padding: 10px 15px;
     border-radius: 5px;
+    border:2px solid transparent;
     transition: background-color 0.3s, color 0.3s;
 }
-.navLink:hover, .navLink_hovered {
+.navLink:hover{
+    border-color: #07e99a;
+}
+
+.navLink_hovered {
     background-color: #07e99a;
     color: #444;
 }
