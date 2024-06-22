@@ -60,14 +60,14 @@ nav ul li {
     margin: 0 10px;
 }
 
-nav ul li a {
+.navLink {
     text-decoration: none;
     color: #fff;
     padding: 10px 15px;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
 }
-nav ul li a:hover {
+.navLink:hover, .navLink_hovered {
     background-color: #07e99a;
     color: #444;
 }
