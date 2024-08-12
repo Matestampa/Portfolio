@@ -104,8 +104,18 @@
     background-color: #07e99a;
 }
 
+
 .link:hover{
     transform: scale(1.05);
+}
+
+/*---- link deshabilitado ----*/
+.disabled-link {
+    pointer-events: none; /* Desactiva los eventos de clic */
+    cursor: not-allowed;   /* Cambia el cursor a un icono de "no permitido" */
+    background-color: gray;           /* Cambia el color para indicar que está desactivado */
+    text-decoration: none; /* Opcional: Elimina el subrayado */
+    color:red
 }
 
 
@@ -150,8 +160,8 @@
     margin-bottom: 10px;
     max-width: 200px; /* Ancho máximo de cada elemento */
     white-space: nowrap; /* Evita que los elementos se dividan en varias líneas */
-    overflow: hidden; /* Oculta el contenido que sobresale */
-    text-overflow: ellipsis; /* Agrega puntos suspensivos (...) si el contenido es demasiado largo */
+    overflow:hidden; /* Oculta el contenido que sobresale */
+    text-overflow:ellipsis; /* Agrega puntos suspensivos (...) si el contenido es demasiado largo */
 }
 
 .tech-stack .tech-icon {
